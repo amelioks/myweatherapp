@@ -4,4 +4,9 @@
 
 
     <string name="fragment_main">Main Fragment</string>
+    <string name="real_feel">Real Feel:</string>
+    <string name="humidity">Humidity:</string>
+    <string name="pressure">Pressure:</string>
+    <string name="temperature_max">Temperature Max:</string>
+    <string name="temperature_min">Temperature Min:</string>
 </resources>

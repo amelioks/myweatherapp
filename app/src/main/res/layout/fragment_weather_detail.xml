@@ -43,16 +43,16 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/close_approach_data_title"
+                        android:text="@string/real_feel"
                         android:textColor="@color/ink" />
 
                     <TextView
-                        android:id="@+id/close_approach_date"
+                        android:id="@+id/RealFeel_Temperature"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_4dp"
                         android:textColor="@color/ink"
-                        tools:text="2020-02-01" />
+                        tools:text="17" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -71,7 +71,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/absolute_magnitude_title"
+                            android:text="@string/temperature_max"
                             android:textColor="@color/ink" />
 
                         <TextView
@@ -80,16 +80,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/spacing_4dp"
                             android:textColor="@color/ink"
-                            tools:text="25.126 au" />
+                            tools:text="19" />
                     </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/help_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/spacing_16dp"
-                        app:srcCompat="@drawable/ic_help_circle"
-                        android:contentDescription="@string/absolute_magnitude_help_button"/>
 
                 </LinearLayout>
 
@@ -97,7 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_16dp"
-                    android:text="@string/estimated_diameter_title"
+                    android:text="@string/temperature_min"
                     android:textColor="@color/ink" />
 
                 <TextView
@@ -106,13 +98,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_4dp"
                     android:textColor="@color/ink"
-                    tools:text="0.82 km" />
+                    tools:text="12" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_16dp"
-                    android:text="@string/relative_velocity_title"
+                    android:text="@string/humidity"
                     android:textColor="@color/ink" />
 
                 <TextView
@@ -121,13 +113,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_4dp"
                     android:textColor="@color/ink"
-                    tools:text="11.9 km/s" />
+                    tools:text="humidity level" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_16dp"
-                    android:text="@string/distance_from_earth_title"
+                    android:text="@string/pressure"
                     android:textColor="@color/ink" />
 
                 <TextView
@@ -136,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/ink"
-                    tools:text="0.0924 au" />
+                    tools:text="pressure level" />
 
             </LinearLayout>
         </ScrollView>

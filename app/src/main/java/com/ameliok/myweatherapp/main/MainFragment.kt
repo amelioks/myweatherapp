@@ -6,14 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ameliok.myweatherapp.api.model.WeatherForecast
+import com.ameliok.myweatherapp.api.service.ForecastsService
+import com.ameliok.myweatherapp.api.service.ServiceBuilder
+import com.ameliok.myweatherapp.data.WeatherRepository
 import com.ameliok.myweatherapp.databinding.FragmentMainBinding
 
 class MainFragment: Fragment() {
-    private val viewModel: WeatherForecastViewModel by lazy {
-        ViewModelProvider(this).get(WeatherForecastViewModel::class.java)
-    }
+    private val repository = WeatherRepository(ServiceBuilder(ForecastsService::class.java))
+    private val viewModel: WeatherForecastViewModel by viewModels { WeatherForecastViewModelFactory(repository) }
     private lateinit var adapter: WeatherForecastAdapter
     private lateinit var binding: FragmentMainBinding
 
@@ -22,14 +28,21 @@ class MainFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var binding = FragmentMainBinding.inflate(inflater)
+        binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        observeViewModel()
         bindUI()
+    }
+
+    private fun observeViewModel() {
+        viewModel.weatherDataResult.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
     }
 
     fun bindUI(){
