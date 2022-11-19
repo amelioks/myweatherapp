@@ -43,6 +43,7 @@ class MainFragment: Fragment() {
         viewModel.weatherDataResult.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
+        viewModel.setNewQuery(DEFAULT_CITY_QUERY)
     }
 
     fun bindUI(){
