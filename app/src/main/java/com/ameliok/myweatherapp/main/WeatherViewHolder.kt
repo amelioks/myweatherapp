@@ -3,6 +3,7 @@ package com.ameliok.myweatherapp.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.ameliok.myweatherapp.api.model.Weather
 import com.ameliok.myweatherapp.api.model.WeatherForecast
 import com.ameliok.myweatherapp.databinding.WeatherListBinding
 
@@ -10,8 +11,10 @@ class WeatherViewHolder private constructor(private val binding: WeatherListBind
     : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(weather: WeatherForecast, clickListener: WeatherAdapter.OnClickListener) {
-        binding.weather = weather
-        binding.clickListener = clickListener
+        binding.weatherDescription
+        binding.weatherDate
+        binding.weatherIcon
+        binding.weatherTemperature
         binding.executePendingBindings()
     }
 
