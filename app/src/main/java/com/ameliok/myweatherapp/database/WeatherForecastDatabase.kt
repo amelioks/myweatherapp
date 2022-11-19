@@ -1,24 +1,25 @@
 package com.ameliok.myweatherapp.database
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.ameliok.myweatherapp.data.WeatherAppDao
+import com.ameliok.myweatherapp.data.WeatherForecastDao
 
-
-abstract class WeatherDatabase : RoomDatabase() {
-    abstract val weatherDao: WeatherAppDao()
+@Database(entities = [WeatherForecastEntity::class], version = 1)
+abstract class WeatherForecastDatabase : RoomDatabase() {
+    abstract val weatherDao: WeatherForecastDao
     companion object {
         @Volatile
-        private var INSTANCE: WeatherDatabase? = null
+        private var INSTANCE: WeatherForecastDatabase? = null
 
-        fun getInstance(context: Context): WeatherDatabase {
+        fun getInstance(context: Context): WeatherForecastDatabase {
             synchronized(this ) {
                 var instance = INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        WeatherDatabase::class.java,
+                        WeatherForecastDatabase::class.java,
                         DatabaseConstants.DATABASE_NAME
                     ).fallbackToDestructiveMigration().build()
                     INSTANCE = instance

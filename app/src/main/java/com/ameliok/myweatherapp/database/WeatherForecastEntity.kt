@@ -6,7 +6,7 @@ import com.ameliok.myweatherapp.api.model.City
 import com.ameliok.myweatherapp.api.model.Wind
 
 @Entity(tableName = DatabaseConstants.TABLE_NAME)
-data class WeatherEntity(
+data class WeatherForecastEntity(
     @PrimaryKey
     val city: City,
     val dt: Long,

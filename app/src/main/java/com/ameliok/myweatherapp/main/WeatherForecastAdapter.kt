@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.ameliok.myweatherapp.api.model.WeatherForecast
 
-class WeatherAdapter()
+class WeatherForecastAdapter()
     : ListAdapter<WeatherForecast, WeatherViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<WeatherForecast>() {

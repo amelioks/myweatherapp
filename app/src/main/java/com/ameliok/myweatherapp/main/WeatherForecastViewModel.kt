@@ -10,7 +10,7 @@ import com.ameliok.myweatherapp.api.service.ForecastsService
 import com.ameliok.myweatherapp.data.WeatherRepository
 import kotlinx.coroutines.launch
 
-class WeatherAppViewModel (
+class WeatherForecastViewModel (
     private val repository: WeatherRepository
 ): ViewModel() {
     private val _weatherDataResult = MutableLiveData<List<WeatherForecast>>()

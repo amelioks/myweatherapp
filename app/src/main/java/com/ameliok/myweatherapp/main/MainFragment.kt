@@ -8,15 +8,13 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ameliok.myweatherapp.api.model.WeatherForecast
 import com.ameliok.myweatherapp.databinding.FragmentMainBinding
-import com.ameliok.myweatherapp.utils.toDegree
 
 class MainFragment: Fragment() {
-    private val viewModel: WeatherAppViewModel by lazy {
-        ViewModelProvider(this).get(WeatherAppViewModel::class.java)
+    private val viewModel: WeatherForecastViewModel by lazy {
+        ViewModelProvider(this).get(WeatherForecastViewModel::class.java)
     }
-    private lateinit var adapter: WeatherAdapter
+    private lateinit var adapter: WeatherForecastAdapter
     private lateinit var binding: FragmentMainBinding
 
     override fun onCreateView(
@@ -40,7 +38,7 @@ class MainFragment: Fragment() {
     }
 
     private fun setupView() {
-        adapter = WeatherAdapter()
+        adapter = WeatherForecastAdapter()
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
     }
