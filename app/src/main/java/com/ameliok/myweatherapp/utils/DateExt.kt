@@ -16,6 +16,8 @@ val dateHourFormat = SimpleDateFormat("dd MMM yyyy, xx")
 // Example : "9AM"
 val hourFormat = SimpleDateFormat("xx")
 
+fun Date?.formatDate(formatter: DateFormat): String? = this?.let { formatter.format(it) }
+
 fun Date?.getDaysDifference(now: Date = Calendar.getInstance().time): Long {
     if (this == null) return 0
 

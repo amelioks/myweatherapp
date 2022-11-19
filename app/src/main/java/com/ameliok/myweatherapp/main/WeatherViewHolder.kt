@@ -10,7 +10,7 @@ import com.ameliok.myweatherapp.databinding.WeatherListBinding
 class WeatherViewHolder private constructor(private val binding: WeatherListBinding)
     : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(weather: WeatherForecast, clickListener: WeatherAdapter.OnClickListener) {
+    fun bind(weather: WeatherForecast) {
         binding.weatherDescription
         binding.weatherDate
         binding.weatherIcon

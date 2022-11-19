@@ -42,7 +42,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvCurrentTemperature"
+                        android:id="@+id/CurrentTemperature"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
@@ -51,7 +51,7 @@
                         tools:text="17°" />
 
                     <TextView
-                        android:id="@+id/tvCurrentLocation"
+                        android:id="@+id/CurrentLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"

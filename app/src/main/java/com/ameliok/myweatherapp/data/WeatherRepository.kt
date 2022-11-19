@@ -1,5 +1,6 @@
 package com.ameliok.myweatherapp.data
 
+import com.ameliok.myweatherapp.api.model.WeatherForecast
 import com.ameliok.myweatherapp.api.model.WeatherForecastResponse
 import com.ameliok.myweatherapp.api.service.ForecastsService
 
@@ -8,9 +9,8 @@ class WeatherRepository(
 ) {
     suspend fun getWeatherForecastData(
         query: String,
-        forecastDayCount: Int,
-        units: String
-    ): WeatherForecastResponse {
-        return service.getForecasts(query, forecastDayCount, units)
+        forecastDayCount: Int
+    ): List<WeatherForecast> {
+        return service.getForecasts(query, forecastDayCount).list
     }
 }

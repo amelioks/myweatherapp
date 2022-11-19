@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.ameliok.myweatherapp.api.model.WeatherForecast
 
-class WeatherAdapter(private val onClickListener: OnClickListener )
+class WeatherAdapter()
     : ListAdapter<WeatherForecast, WeatherViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<WeatherForecast>() {
@@ -24,10 +24,11 @@ class WeatherAdapter(private val onClickListener: OnClickListener )
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
         val weather = getItem(position)
-        holder.bind(weather, onClickListener)
+        holder.bind(weather)
     }
 
     class OnClickListener(val clickListener: (weather: WeatherForecast) -> Unit) {
         fun onClick(weather: WeatherForecast) = clickListener(weather)
     }
+
 }
