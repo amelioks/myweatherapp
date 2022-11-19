@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main.WeatherAdapter">
 
     <LinearLayout
@@ -41,28 +41,42 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/CurrentTemperature"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/font_x32"
-                        android:textStyle="bold"
-                        tools:text="17°" />
+                    <androidx.constraintlayout.motion.widget.MotionLayout
+                        android:id="@+id/motion_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layoutDescription="@xml/fragment_main_scene"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                    <TextView
-                        android:id="@+id/CurrentLocation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/font_x20"
-                        tools:text="Jakarta" />
+                        <TextView
+                            android:id="@+id/CurrentTemperature"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_x32"
+                            android:textStyle="bold"
+                            tools:layout_editor_absoluteX="181dp"
+                            tools:layout_editor_absoluteY="40dp"
+                            tools:text="17°" />
+
+                        <TextView
+                            android:id="@+id/CurrentLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_x20"
+                            tools:layout_editor_absoluteX="171dp"
+                            tools:layout_editor_absoluteY="83dp"
+                            tools:text="Jakarta" />
+
+                    </androidx.constraintlayout.motion.widget.MotionLayout>
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/weather_list"/>
 
             </LinearLayout>
         </FrameLayout>
