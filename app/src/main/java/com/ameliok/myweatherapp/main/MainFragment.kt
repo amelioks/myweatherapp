@@ -9,7 +9,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ameliok.myweatherapp.api.service.ForecastsService
@@ -59,7 +58,7 @@ class MainFragment: Fragment() {
         setupSearchView()
     }
 
-    private fun setupView() {
+    private fun setupView(): View {
         adapter = WeatherForecastAdapter(WeatherForecastAdapter.OnClickListener { forecastID
             -> viewModel.onDataWeatherForecastClick(forecastID)
         })
@@ -71,6 +70,7 @@ class MainFragment: Fragment() {
                 viewModel.dataWeatherForecastNavigated()
             }
         }
+        return binding.root
     }
 
     private fun setupSearchView() {

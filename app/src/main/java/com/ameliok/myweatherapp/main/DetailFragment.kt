@@ -12,6 +12,7 @@ class DetailFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val binding = FragmentWeatherDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
+        val weaterForecast = DetailFragmentArgs.fromBundle(requireArguments()).selectedWeatherForecast
         return binding.root
     }
 }

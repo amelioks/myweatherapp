@@ -12,7 +12,7 @@ import com.ameliok.myweatherapp.utils.setWeatherIconUrl
 class WeatherForecastViewHolder(val binding: WeatherListBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: WeatherForecast) {
+    fun bind(item: WeatherForecast, onClick: WeatherForecastAdapter.OnClickListener) {
         itemView.apply {
             val weather = item.weather.firstOrNull()
             binding.weatherDescription.text = weather?.description
@@ -20,6 +20,7 @@ class WeatherForecastViewHolder(val binding: WeatherListBinding) :
             binding.weatherIcon.setWeatherIconUrl(weather?.icon)
             binding.weatherTemperature.text = item.main.getTemperatureRangeText()
             binding.executePendingBindings()
+            setOnClickListener { onClick.clickListener(item) }
         }
     }
 

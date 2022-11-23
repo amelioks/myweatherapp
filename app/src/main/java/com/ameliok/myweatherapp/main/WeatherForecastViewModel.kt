@@ -17,8 +17,8 @@ class WeatherForecastViewModel (
     private val _weatherDataResult = MutableLiveData<List<WeatherForecast>>()
     val weatherDataResult: LiveData<List<WeatherForecast>>get() = _weatherDataResult
 
-    private val _navigateToSelectedData = MutableLiveData<WeatherForecast>()
-    val navigateToSelectedData: LiveData<WeatherForecast>
+    private val _navigateToSelectedData = MutableLiveData<WeatherForecast?>()
+    val navigateToSelectedData: MutableLiveData<WeatherForecast?>
         get() = _navigateToSelectedData
 
     var query: String = "berlin"
@@ -33,7 +33,7 @@ class WeatherForecastViewModel (
     }
 
     fun getForecastData() = viewModelScope.launch{
-        _weatherDataResult.value = repository.getWeatherForecastData(query,5, "metric")
+        _weatherDataResult.value = repository.getWeatherForecastData(query,9, "metric")
     }
 
     fun onDataWeatherForecastClick(weatherForecast: WeatherForecast) {
