@@ -9,12 +9,12 @@ import java.util.Locale
 import java.util.TimeZone
 import kotlin.math.abs
 
-// Example: "2020-06-23" (default format by API)
-val dateFormatDash = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+// Example: "2020-06-23" (default format by API) "2022-11-23 18:00:00
+val dateFormatDash = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
 // Example: "02 Feb 2017, 7PM"
-val dateHourFormat = SimpleDateFormat("dd MMM yyyy, xx")
+val dateHourFormat = SimpleDateFormat("dd MMM yyyy, h:mm a", Locale.ENGLISH)
 // Example : "9AM"
-val hourFormat = SimpleDateFormat("xx")
+val hourFormat = SimpleDateFormat("haa", Locale.ENGLISH)
 
 fun Date?.formatDate(formatter: DateFormat): String? = this?.let { formatter.format(it) }
 
