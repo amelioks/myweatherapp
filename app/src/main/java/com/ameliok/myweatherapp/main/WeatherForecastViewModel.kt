@@ -16,7 +16,7 @@ class WeatherForecastViewModel (
     private val _weatherDataResult = MutableLiveData<List<WeatherForecast>>()
     val weatherDataResult: LiveData<List<WeatherForecast>>get() = _weatherDataResult
 
-    var query: String = ""
+    var query: String = "berlin"
         private set
 
     init {
@@ -28,6 +28,6 @@ class WeatherForecastViewModel (
     }
 
     fun getForecastData() = viewModelScope.launch{
-        _weatherDataResult.value = repository.getWeatherForecastData("",5)
+        _weatherDataResult.value = repository.getWeatherForecastData(query,5, "metric")
     }
 }

@@ -9,8 +9,9 @@ class WeatherRepository(
 ) {
     suspend fun getWeatherForecastData(
         query: String,
-        forecastDayCount: Int
+        forecastDayCount: Int,
+        units: String
     ): List<WeatherForecast> {
-        return service.getForecasts(query, forecastDayCount).list
+        return service.getForecasts(query, forecastDayCount, units).list
     }
 }
