@@ -1,17 +1,17 @@
 package com.ameliok.myweatherapp.main
 
 import android.os.Bundle
+import android.view.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ameliok.myweatherapp.api.model.WeatherForecast
 import com.ameliok.myweatherapp.api.service.ForecastsService
 import com.ameliok.myweatherapp.api.service.ServiceBuilder
 import com.ameliok.myweatherapp.data.WeatherRepository
@@ -23,6 +23,7 @@ class MainFragment: Fragment() {
     private lateinit var adapter: WeatherForecastAdapter
 
     private var _binding: FragmentMainBinding? = null
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -31,6 +32,8 @@ class MainFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+
+
         return _binding?.root
     }
 
@@ -57,9 +60,17 @@ class MainFragment: Fragment() {
     }
 
     private fun setupView() {
-        adapter = WeatherForecastAdapter()
+        adapter = WeatherForecastAdapter(WeatherForecastAdapter.OnClickListener { forecastID
+            -> viewModel.onDataWeatherForecastClick(forecastID)
+        })
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        viewModel.navigateToSelectedData.observe(viewLifecycleOwner) {forecast ->
+            forecast?.let{
+                findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
+                viewModel.dataWeatherForecastNavigated()
+            }
+        }
     }
 
     private fun setupSearchView() {
@@ -75,5 +86,4 @@ class MainFragment: Fragment() {
             }
         })
     }
-
 }

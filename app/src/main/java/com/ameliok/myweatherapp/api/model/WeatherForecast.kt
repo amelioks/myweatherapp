@@ -1,21 +1,20 @@
 package com.ameliok.myweatherapp.api.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+
+@Parcelize
 data class WeatherForecast(
-    @SerializedName("clouds")
-    val clouds: Clouds,
     @SerializedName("dt")
     val dt: Long,
     @SerializedName("dt_txt")
     val dtTxt: String,
     @SerializedName("main")
     val main: Main,
-    @SerializedName("rain")
-    val rain: Rain,
-    @SerializedName("sys")
-    val sys: Sys,
     @SerializedName("weather")
     val weather: List<Weather>,
     @SerializedName("wind")
-    val wind: Wind)
+    val wind: Wind
+): Parcelable

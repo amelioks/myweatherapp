@@ -1,7 +1,10 @@
 package com.ameliok.myweatherapp.api.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Main(
     @SerializedName("feels_like")
     val feelsLike: Double,
@@ -21,4 +24,4 @@ data class Main(
     val tempMax: Double,
     @SerializedName("temp_min")
     val tempMin: Double
-)
+) : Parcelable

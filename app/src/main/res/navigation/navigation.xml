@@ -11,6 +11,20 @@
         android:label="@string/fragment_main"
         tools:layout="@layout/fragment_main">
 
+        <action
+            android:id="@+id/action_showDetail"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.ameliok.myweatherapp.main.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_weather_detail">
+
+        <argument
+            android:name="selectedWeatherForecast"
+            app:argType="com.ameliok.myweatherapp.api.model.WeatherForecast" />
     </fragment>
 
 </navigation>

@@ -67,7 +67,7 @@
                             android:textSize="@dimen/font_x20"
                             tools:layout_editor_absoluteX="171dp"
                             tools:layout_editor_absoluteY="83dp"
-                            tools:text="Jakarta" />
+                            tools:text="Berlin" />
 
                     </androidx.constraintlayout.motion.widget.MotionLayout>
                 </LinearLayout>
