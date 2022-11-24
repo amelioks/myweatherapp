@@ -6,7 +6,7 @@
     <Transition
         app:constraintSetEnd="@id/end"
         app:constraintSetStart="@+id/start"
-        motion:duration="3000"
+        motion:duration="@integer/material_motion_duration_short_1"
         motion:autoTransition="animateToEnd"/>
 
     <ConstraintSet android:id="@+id/start">
