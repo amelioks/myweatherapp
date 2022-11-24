@@ -38,7 +38,7 @@ class MainFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
         bindUI()
-     //   initQuery()
+        initQuery()
     }
 
     private fun initQuery() {
