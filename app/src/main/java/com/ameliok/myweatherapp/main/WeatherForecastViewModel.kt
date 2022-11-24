@@ -6,13 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ameliok.myweatherapp.api.model.WeatherForecast
 import com.ameliok.myweatherapp.api.model.WeatherForecastResponse
-import com.ameliok.myweatherapp.api.service.ForecastsService
+import com.ameliok.myweatherapp.data.SharedPreferenceHelper
 import com.ameliok.myweatherapp.data.WeatherRepository
-import com.ameliok.myweatherapp.database.WeatherForecastEntity
 import kotlinx.coroutines.launch
 
 class WeatherForecastViewModel (
-    private val repository: WeatherRepository
+    private val repository: WeatherRepository,
+    private val sharedPreferenceHelper: SharedPreferenceHelper
 ): ViewModel() {
     private val _weatherDataResult = MutableLiveData<WeatherForecastResponse>()
     val weatherDataResult: LiveData<WeatherForecastResponse>get() = _weatherDataResult
@@ -30,6 +30,7 @@ class WeatherForecastViewModel (
 
     fun setNewQuery(newQuery: String) {
         query = newQuery
+        query = sharedPreferenceHelper.query
     }
 
     fun getForecastData() = viewModelScope.launch{
