@@ -1,7 +1,5 @@
 package com.ameliok.myweatherapp.main
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ameliok.myweatherapp.api.model.WeatherForecast
 import com.ameliok.myweatherapp.databinding.WeatherListBinding
