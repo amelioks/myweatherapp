@@ -14,8 +14,8 @@ import kotlinx.coroutines.launch
 class WeatherForecastViewModel (
     private val repository: WeatherRepository
 ): ViewModel() {
-    private val _weatherDataResult = MutableLiveData<List<WeatherForecast>>()
-    val weatherDataResult: LiveData<List<WeatherForecast>>get() = _weatherDataResult
+    private val _weatherDataResult = MutableLiveData<WeatherForecastResponse>()
+    val weatherDataResult: LiveData<WeatherForecastResponse>get() = _weatherDataResult
 
     private val _navigateToSelectedData = MutableLiveData<WeatherForecast?>()
     val navigateToSelectedData: MutableLiveData<WeatherForecast?>

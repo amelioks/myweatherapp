@@ -49,13 +49,15 @@ class MainFragment: Fragment() {
 
     private fun observeViewModel() {
         viewModel.weatherDataResult.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+            adapter.submitList(it.list)
+            binding.currentLocation.text = it.city.name
+            binding.currentTemperature.text = it.list.firstOrNull()?.main?.temp.toString()
         })
     }
 
     fun bindUI(){
         setupView()
-        setupSearchView()
+        //setupSearchView()
     }
 
     private fun setupView(): View {
@@ -73,17 +75,17 @@ class MainFragment: Fragment() {
         return binding.root
     }
 
-    private fun setupSearchView() {
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.setNewQuery(query ?: "")
-                viewModel.getForecastData()
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-        })
-    }
+//    private fun setupSearchView() {
+//        binding.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                viewModel.setNewQuery(query ?: "")
+//                viewModel.getForecastData()
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                return false
+//            }
+//        })
+//    }
 }

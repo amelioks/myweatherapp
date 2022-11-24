@@ -11,7 +11,7 @@ class WeatherRepository(
         query: String,
         forecastDayCount: Int,
         units: String
-    ): List<WeatherForecast> {
-        return service.getForecasts(query, forecastDayCount, units).list
+    ): WeatherForecastResponse {
+        return service.getForecasts(query, forecastDayCount, units)
     }
 }
