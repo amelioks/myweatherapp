@@ -19,7 +19,7 @@ import com.ameliok.myweatherapp.utils.toDegree
 
 class MainFragment: Fragment() {
     private val repository = WeatherRepository(ServiceBuilder(ForecastsService::class.java))
-    private val sharedPreferenceHelper = SharedPreferenceHelper(requireContext())
+    private val sharedPreferenceHelper by lazy { SharedPreferenceHelper(requireContext()) }
     private val viewModel: WeatherForecastViewModel by viewModels { WeatherForecastViewModelFactory(repository, sharedPreferenceHelper) }
     private lateinit var adapter: WeatherForecastAdapter
     private var _binding: FragmentMainBinding? = null
@@ -88,9 +88,5 @@ class MainFragment: Fragment() {
         binding.changeLocation.setOnClickListener {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToWeatherLocationFragment())
         }
-    }
-
-    companion object {
-        const val DEFAULT_CITY_QUERY: String = "Berlin"
     }
 }
