@@ -33,9 +33,14 @@
         android:id="@+id/weatherLocationFragment"
         android:name="com.ameliok.myweatherapp.main.WeatherLocationFragment"
         android:label="WeatherLocationFragment" >
+
+        <argument
+            android:name="changeLocationClick"
+            app:argType="string" />
         <action
             android:id="@+id/action_weatherLocationFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+
     </fragment>
 
 </navigation>

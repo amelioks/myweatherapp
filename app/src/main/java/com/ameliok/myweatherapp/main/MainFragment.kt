@@ -17,6 +17,7 @@ import com.ameliok.myweatherapp.data.WeatherRepository
 import com.ameliok.myweatherapp.databinding.FragmentMainBinding
 import com.ameliok.myweatherapp.utils.getTemperatureRangeText
 import com.ameliok.myweatherapp.utils.toDegree
+import retrofit2.http.Query
 
 class MainFragment: Fragment() {
     private val repository = WeatherRepository(ServiceBuilder(ForecastsService::class.java))
@@ -33,8 +34,6 @@ class MainFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-
-
         return _binding?.root
     }
 
@@ -42,6 +41,13 @@ class MainFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
         bindUI()
+
+    }
+
+    private fun initQuery() {
+        val query = WeatherLocationFragmentArgs.fromBundle(requireArguments()).changeLocationClick
+        viewModel.setNewQuery(query)
+        viewModel.getForecastData()
     }
 
     override fun onDestroy() {
@@ -80,9 +86,13 @@ class MainFragment: Fragment() {
 
     fun changeLocationClick() {
         binding.changeLocation.setOnClickListener {
-            findNavController().navigate(MainFragmentDirections.actionMainFragmentToWeatherLocationFragment())
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToWeatherLocationFragment(
+                it.toString()
+            ))
         }
     }
 
-
+    companion object {
+        const val DEFAULT_CITY_QUERY: String = "Berlin"
+    }
 }
