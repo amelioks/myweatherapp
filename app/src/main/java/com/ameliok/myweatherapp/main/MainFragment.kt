@@ -23,9 +23,7 @@ class MainFragment: Fragment() {
     private val repository = WeatherRepository(ServiceBuilder(ForecastsService::class.java))
     private val viewModel: WeatherForecastViewModel by viewModels { WeatherForecastViewModelFactory(repository) }
     private lateinit var adapter: WeatherForecastAdapter
-
     private var _binding: FragmentMainBinding? = null
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -41,11 +39,12 @@ class MainFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
         bindUI()
-
+     //   initQuery()
     }
 
     private fun initQuery() {
-        val query = WeatherLocationFragmentArgs.fromBundle(requireArguments()).changeLocationClick
+        val arg = arguments ?: return
+        val query = MainFragmentArgs.fromBundle(arg).changeLocationClick?: return
         viewModel.setNewQuery(query)
         viewModel.getForecastData()
     }
@@ -80,15 +79,12 @@ class MainFragment: Fragment() {
                 viewModel.dataWeatherForecastNavigated()
             }
         }
-
         return binding.root
     }
 
     fun changeLocationClick() {
         binding.changeLocation.setOnClickListener {
-            findNavController().navigate(MainFragmentDirections.actionMainFragmentToWeatherLocationFragment(
-                it.toString()
-            ))
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToWeatherLocationFragment())
         }
     }
 

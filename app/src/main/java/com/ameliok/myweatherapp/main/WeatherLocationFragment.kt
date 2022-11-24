@@ -11,10 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.ameliok.myweatherapp.databinding.FragmentWeatherLocationBinding
 
 class WeatherLocationFragment : Fragment() {
-    private val viewModel: WeatherForecastViewModel by viewModels()
-    private lateinit var adapter: WeatherForecastAdapter
     private var _binding: FragmentWeatherLocationBinding? = null
-
     private val binding get() = _binding!!
 
 
@@ -38,13 +35,13 @@ class WeatherLocationFragment : Fragment() {
     private fun setupSearchView() {
         val searchView = binding.searchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
+            override fun onQueryTextSubmit(query: String): Boolean {
                 findNavController().navigate(
-                    WeatherLocationFragmentDirections.actionWeatherLocationFragmentToMainFragment())
+                    WeatherLocationFragmentDirections.actionWeatherLocationFragmentToMainFragment(query))
                 return false
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
+            override fun onQueryTextChange(newText: String): Boolean {
                 return false
             }
         })

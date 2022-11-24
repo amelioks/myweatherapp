@@ -11,6 +11,11 @@
         android:label="@string/fragment_main"
         tools:layout="@layout/fragment_main">
 
+        <argument
+        android:name="changeLocationClick"
+        app:argType="string"
+            app:nullable="true" />
+
         <action
             android:id="@+id/action_showDetail"
             app:destination="@id/detailFragment" />
@@ -32,15 +37,12 @@
     <fragment
         android:id="@+id/weatherLocationFragment"
         android:name="com.ameliok.myweatherapp.main.WeatherLocationFragment"
-        android:label="WeatherLocationFragment" >
+        android:label="WeatherLocationFragment"
+        tools:layout="@layout/fragment_weather_location">
 
-        <argument
-            android:name="changeLocationClick"
-            app:argType="string" />
         <action
             android:id="@+id/action_weatherLocationFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
-
     </fragment>
 
 </navigation>
