@@ -15,6 +15,7 @@ import com.ameliok.myweatherapp.api.service.ForecastsService
 import com.ameliok.myweatherapp.api.service.ServiceBuilder
 import com.ameliok.myweatherapp.data.WeatherRepository
 import com.ameliok.myweatherapp.databinding.FragmentMainBinding
+import com.ameliok.myweatherapp.utils.getTemperatureRangeText
 
 class MainFragment: Fragment() {
     private val repository = WeatherRepository(ServiceBuilder(ForecastsService::class.java))
@@ -51,7 +52,7 @@ class MainFragment: Fragment() {
         viewModel.weatherDataResult.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it.list)
             binding.currentLocation.text = it.city.name
-            binding.currentTemperature.text = it.list.firstOrNull()?.main?.temp.toString()
+            binding.currentTemperature.text = it.list.firstOrNull()?.main?.getTemperatureRangeText()
         })
     }
 
