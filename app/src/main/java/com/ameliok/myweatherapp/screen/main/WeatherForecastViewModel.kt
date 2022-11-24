@@ -1,4 +1,4 @@
-package com.ameliok.myweatherapp.main
+package com.ameliok.myweatherapp.screen.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,7 +21,7 @@ class WeatherForecastViewModel (
     val navigateToSelectedData: MutableLiveData<WeatherForecast?>
         get() = _navigateToSelectedData
 
-    var query: String = "berlin"
+    var query: String = sharedPreferenceHelper.query
         private set
 
     init {
@@ -30,7 +30,7 @@ class WeatherForecastViewModel (
 
     fun setNewQuery(newQuery: String) {
         query = newQuery
-        query = sharedPreferenceHelper.query
+        sharedPreferenceHelper.query = newQuery
     }
 
     fun getForecastData() = viewModelScope.launch{

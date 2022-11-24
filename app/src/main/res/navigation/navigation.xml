@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.ameliok.myweatherapp.main.MainFragment"
+        android:name="com.ameliok.myweatherapp.screen.main.MainFragment"
         android:label="@string/fragment_main"
         tools:layout="@layout/fragment_main">
 
@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.ameliok.myweatherapp.main.DetailFragment"
+        android:name="com.ameliok.myweatherapp.screen.detail.DetailFragment"
         android:label="DetailFragment"
         tools:layout="@layout/fragment_weather_detail">
 
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/weatherLocationFragment"
-        android:name="com.ameliok.myweatherapp.main.WeatherLocationFragment"
+        android:name="com.ameliok.myweatherapp.screen.location.WeatherLocationFragment"
         android:label="WeatherLocationFragment"
         tools:layout="@layout/fragment_weather_location">
 

@@ -1,11 +1,10 @@
-package com.ameliok.myweatherapp.main
+package com.ameliok.myweatherapp.screen.main
 
 import android.os.Bundle
 import android.view.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -13,15 +12,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ameliok.myweatherapp.api.service.ForecastsService
 import com.ameliok.myweatherapp.api.service.ServiceBuilder
+import com.ameliok.myweatherapp.data.SharedPreferenceHelper
 import com.ameliok.myweatherapp.data.WeatherRepository
 import com.ameliok.myweatherapp.databinding.FragmentMainBinding
-import com.ameliok.myweatherapp.utils.getTemperatureRangeText
 import com.ameliok.myweatherapp.utils.toDegree
-import retrofit2.http.Query
 
 class MainFragment: Fragment() {
     private val repository = WeatherRepository(ServiceBuilder(ForecastsService::class.java))
-    private val viewModel: WeatherForecastViewModel by viewModels { WeatherForecastViewModelFactory(repository) }
+    private val sharedPreferenceHelper = SharedPreferenceHelper(requireContext())
+    private val viewModel: WeatherForecastViewModel by viewModels { WeatherForecastViewModelFactory(repository, sharedPreferenceHelper) }
     private lateinit var adapter: WeatherForecastAdapter
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -75,7 +74,10 @@ class MainFragment: Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         viewModel.navigateToSelectedData.observe(viewLifecycleOwner) {forecast ->
             forecast?.let{
-                findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
+                findNavController().navigate(MainFragmentDirections.actionShowDetail(
+                        it
+                    )
+                )
                 viewModel.dataWeatherForecastNavigated()
             }
         }

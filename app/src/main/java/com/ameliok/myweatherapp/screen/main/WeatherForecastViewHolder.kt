@@ -1,4 +1,4 @@
-package com.ameliok.myweatherapp.main
+package com.ameliok.myweatherapp.screen.main
 
 import androidx.recyclerview.widget.RecyclerView
 import com.ameliok.myweatherapp.api.model.WeatherForecast

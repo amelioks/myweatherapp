@@ -1,4 +1,4 @@
-package com.ameliok.myweatherapp.main
+package com.ameliok.myweatherapp.screen.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

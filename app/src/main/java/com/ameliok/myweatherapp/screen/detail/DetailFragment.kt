@@ -1,4 +1,4 @@
-package com.ameliok.myweatherapp.main
+package com.ameliok.myweatherapp.screen.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,9 @@ class DetailFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val binding = FragmentWeatherDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        val weatherDetail = DetailFragmentArgs.fromBundle(requireArguments()).selectedWeatherForecast
+        val weatherDetail = com.ameliok.myweatherapp.screen.detail.DetailFragmentArgs.fromBundle(
+            requireArguments()
+        ).selectedWeatherForecast
 
         binding.ImageWeather.setWeatherIconUrl(weatherDetail.weather.firstOrNull()?.icon)
         binding.RealFeelTemperature.text = weatherDetail.main.feelsLike.toDegree()
