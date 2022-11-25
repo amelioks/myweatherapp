@@ -4,34 +4,132 @@
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
     <Transition
-        app:constraintSetEnd="@id/end"
         app:constraintSetStart="@+id/start"
-        motion:duration="@integer/material_motion_duration_short_1"
-        motion:autoTransition="animateToEnd"/>
+        app:constraintSetEnd="@+id/end">
+    </Transition>
+
+    <KeyFrameSet>
+        <KeyPosition
+            app:framePosition="25"
+            app:motionTarget="@id/currentTemperature"
+            app:keyPositionType="parentRelative"
+            app:percentY="0.6"
+            />
+        <KeyPosition
+            app:framePosition="25"
+            app:motionTarget="@id/currentLocation"
+            app:keyPositionType="parentRelative"
+            app:percentY="0.6"
+            />
+        <KeyPosition
+            app:framePosition="25"
+            app:motionTarget="@id/changeLocation"
+            app:keyPositionType="parentRelative"
+            app:percentY="0.6"
+            />
+
+        <KeyPosition
+            app:framePosition="50"
+            app:motionTarget="@id/currentTemperature"
+            app:keyPositionType="parentRelative"
+            app:percentY="0.5"
+            />
+        <KeyPosition
+            app:framePosition="50"
+            app:motionTarget="@id/currentLocation"
+            app:keyPositionType="parentRelative"
+            app:percentY="0.5"
+            />
+        <KeyPosition
+            app:framePosition="50"
+            app:motionTarget="@id/changeLocation"
+            app:keyPositionType="parentRelative"
+            app:percentY="0.5"
+            />
+
+        <KeyPosition
+            app:framePosition="75"
+            app:motionTarget="@id/currentTemperature"
+            app:keyPositionType="parentRelative"
+            app:percentY="0.6"
+            />
+        <KeyPosition
+            app:framePosition="75"
+            app:motionTarget="@id/currentLocation"
+            app:keyPositionType="parentRelative"
+            app:percentY="0.6"
+            />
+        <KeyPosition
+            app:framePosition="75"
+            app:motionTarget="@id/changeLocation"
+            app:keyPositionType="parentRelative"
+            app:percentY="0.6"
+            />
+        <KeyPosition
+            app:framePosition="100"
+            app:motionTarget="@id/currentTemperature"
+            app:keyPositionType="parentRelative"
+            app:percentY="0.6"
+            />
+        <KeyPosition
+            app:framePosition="100"
+            app:motionTarget="@id/currentLocation"
+            app:keyPositionType="parentRelative"
+            app:percentY="0.6"
+            />
+        <KeyPosition
+            app:framePosition="100"
+            app:motionTarget="@id/changeLocation"
+            app:keyPositionType="parentRelative"
+            app:percentY="0.6"
+            />
+    </KeyFrameSet>
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
             android:id="@+id/CurrentTemperature"
-            android:alpha="0.0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_editor_absoluteY="40dp"
-            app:layout_editor_absoluteX="181dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
         <Constraint
-            app:layout_editor_absoluteY="83dp"
+            android:id="@+id/CurrentLocation"
             android:layout_height="wrap_content"
-            app:layout_editor_absoluteX="171dp"
             android:layout_width="wrap_content"
-            android:id="@+id/CurrentLocation" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Constraint
+            android:id="@+id/changeLocation"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@id/CurrentTemperature"
-            android:alpha="1.0"
+            android:id="@+id/CurrentTemperature"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <Constraint
+            android:id="@+id/CurrentLocation"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <Constraint
+            android:id="@+id/changeLocation"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </ConstraintSet>
-
-
 </MotionScene>

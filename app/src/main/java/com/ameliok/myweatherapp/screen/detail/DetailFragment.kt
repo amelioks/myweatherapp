@@ -14,7 +14,7 @@ class DetailFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val binding = FragmentWeatherDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        val weatherDetail = com.ameliok.myweatherapp.screen.detail.DetailFragmentArgs.fromBundle(
+        val weatherDetail = DetailFragmentArgs.fromBundle(
             requireArguments()
         ).selectedWeatherForecast
 

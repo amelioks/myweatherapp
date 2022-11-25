@@ -5,6 +5,8 @@ import android.view.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -16,6 +18,7 @@ import com.ameliok.myweatherapp.data.SharedPreferenceHelper
 import com.ameliok.myweatherapp.data.WeatherRepository
 import com.ameliok.myweatherapp.databinding.FragmentMainBinding
 import com.ameliok.myweatherapp.utils.toDegree
+import com.google.android.material.appbar.AppBarLayout
 
 class MainFragment: Fragment() {
     private val repository = WeatherRepository(ServiceBuilder(ForecastsService::class.java))

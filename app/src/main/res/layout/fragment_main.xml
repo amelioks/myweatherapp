@@ -33,46 +33,55 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:layoutDescription="@xml/fragment_main_scene">
+                        android:id="@+id/widget_layout">
 
-                        <TextView
-                            android:id="@+id/currentTemperature"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="64dp"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/font_x36"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="17°" />
+                        <androidx.constraintlayout.motion.widget.MotionLayout
+                            android:id="@+id/motion_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:layoutDescription="@xml/fragment_main_scene"
+                            app:motionDebug="SHOW_PATH">
 
-                        <TextView
-                            android:id="@+id/currentLocation"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/font_x20"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/currentTemperature"
-                            app:layout_constraintVertical_bias="0.0"
-                            tools:text="Berlin" />
+                            <TextView
+                                android:id="@+id/currentTemperature"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="64dp"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_x36"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="17°" />
 
-                        <TextView
-                            android:id="@+id/changeLocation"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:text="@string/change_location"
-                            android:textColor="@color/ink"
-                            android:textSize="@dimen/spacing_12dp"
-                            android:textStyle="italic"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/currentLocation" />
+                            <TextView
+                                android:id="@+id/currentLocation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_x20"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/currentTemperature"
+                                app:layout_constraintVertical_bias="0.0"
+                                tools:text="Berlin" />
+
+                            <TextView
+                                android:id="@+id/changeLocation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:text="@string/change_location"
+                                android:textColor="@color/ink"
+                                android:textSize="@dimen/spacing_12dp"
+                                android:textStyle="italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/currentLocation" />
+
+                        </androidx.constraintlayout.motion.widget.MotionLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
@@ -85,22 +94,6 @@
 
             </LinearLayout>
         </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layoutLoading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/ochreLight"
-        android:gravity="center"
-        android:visibility="gone"
-        tools:visibility="gone">
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:progressTint="@color/white" />
-
     </LinearLayout>
 </FrameLayout>
 </layout>

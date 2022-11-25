@@ -34,9 +34,7 @@ class WeatherLocationFragment : Fragment() {
         val searchView = binding.searchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                findNavController().navigate(WeatherLocationFragmentDirections.actionWeatherLocationFragmentToMainFragment(
-                        query
-                    )
+                findNavController().navigate(WeatherLocationFragmentDirections.actionWeatherLocationFragmentToMainFragment()
                 )
                 return false
             }
