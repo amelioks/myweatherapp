@@ -6,7 +6,7 @@
     <Transition
         app:constraintSetStart="@+id/start"
         app:constraintSetEnd="@+id/end">
-    </Transition>
+
 
     <KeyFrameSet>
         <KeyPosition
@@ -65,25 +65,32 @@
             app:keyPositionType="parentRelative"
             app:percentY="0.6"
             />
-        <KeyPosition
+        <KeyAttribute
+            app:framePosition="50"
+            app:motionTarget="@id/currentTemperature"
+            />
+        <KeyAttribute
+            app:framePosition="50"
+            app:motionTarget="@id/currentLocation"
+            />
+        <KeyAttribute
+            app:framePosition="50"
+            app:motionTarget="@id/changeLocation"
+            />
+        <KeyAttribute
             app:framePosition="100"
             app:motionTarget="@id/currentTemperature"
-            app:keyPositionType="parentRelative"
-            app:percentY="0.6"
             />
-        <KeyPosition
+        <KeyAttribute
             app:framePosition="100"
             app:motionTarget="@id/currentLocation"
-            app:keyPositionType="parentRelative"
-            app:percentY="0.6"
             />
-        <KeyPosition
+        <KeyAttribute
             app:framePosition="100"
             app:motionTarget="@id/changeLocation"
-            app:keyPositionType="parentRelative"
-            app:percentY="0.6"
             />
     </KeyFrameSet>
+    </Transition>
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
@@ -115,20 +122,23 @@
     <ConstraintSet android:id="@+id/end">
         <Constraint
             android:id="@+id/CurrentTemperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
         <Constraint
             android:id="@+id/CurrentLocation"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
         <Constraint
             android:id="@+id/changeLocation"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
     </ConstraintSet>

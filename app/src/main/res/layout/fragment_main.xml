@@ -30,16 +30,17 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <com.google.android.material.appbar.AppBarLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/widget_layout">
+                        android:id="@+id/appBar_layout">
 
                         <androidx.constraintlayout.motion.widget.MotionLayout
                             android:id="@+id/motion_layout"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             app:layoutDescription="@xml/fragment_main_scene"
+                            app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed"
                             app:motionDebug="SHOW_PATH">
 
                             <TextView
@@ -82,8 +83,7 @@
                                 app:layout_constraintTop_toBottomOf="@+id/currentLocation" />
 
                         </androidx.constraintlayout.motion.widget.MotionLayout>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.appbar.AppBarLayout>
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView

@@ -34,6 +34,7 @@ class MainFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+        coordinateMotion()
         return _binding?.root
     }
 
@@ -92,4 +93,17 @@ class MainFragment: Fragment() {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToWeatherLocationFragment())
         }
     }
+    private fun coordinateMotion() {
+
+        val appBarLayout = binding.appBarLayout
+        val motionLayout = binding.motionLayout
+
+        val listener = AppBarLayout.OnOffsetChangedListener { unused, verticalOffset ->
+            val seekPosition = -verticalOffset / appBarLayout.totalScrollRange.toFloat()
+            motionLayout.progress = seekPosition
+        }
+
+        appBarLayout.addOnOffsetChangedListener(listener)
+    }
+
 }
