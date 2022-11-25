@@ -35,19 +35,15 @@
                         android:layout_height="match_parent"
                         android:id="@+id/appBar_layout">
 
-                        <androidx.constraintlayout.motion.widget.MotionLayout
-                            android:id="@+id/motion_layout"
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:layoutDescription="@xml/fragment_main_scene"
-                            app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed"
-                            app:motionDebug="SHOW_PATH">
+                            android:layout_height="match_parent">
 
                             <TextView
                                 android:id="@+id/currentTemperature"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="64dp"
+                                android:layout_marginTop="@dimen/spacing_64dp"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/font_x36"
                                 android:textStyle="bold"
@@ -73,7 +69,7 @@
                                 android:id="@+id/useMyLocation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="@dimen/spacing_4dp"
                                 android:text="@string/use_my_location"
                                 android:textColor="@color/ink"
                                 android:textSize="@dimen/spacing_12dp"
@@ -86,18 +82,16 @@
                                 android:id="@+id/changeLocation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="@dimen/spacing_4dp"
                                 android:text="@string/change_location"
                                 android:textColor="@color/ink"
                                 android:textSize="@dimen/spacing_12dp"
                                 android:textStyle="italic"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="@+id/useMyLocation"
-                                app:layout_constraintTop_toBottomOf="parent" />
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/useMyLocation" />
 
-
-
-                        </androidx.constraintlayout.motion.widget.MotionLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.google.android.material.appbar.AppBarLayout>
                 </LinearLayout>
 
