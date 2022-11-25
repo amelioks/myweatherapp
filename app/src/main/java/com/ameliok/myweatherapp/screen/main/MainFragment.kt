@@ -3,16 +3,9 @@ package com.ameliok.myweatherapp.screen.main
 import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationManager
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -37,6 +30,7 @@ class MainFragment: Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private val REQUEST_LOCATION = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,21 +48,23 @@ class MainFragment: Fragment() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location : Location? ->
-                    // Got last known location. In some rare situations this can be null.
-                    if (location != null){
-                        viewModel.getForecastCurrentLocationData(location.latitude,location.longitude)
-                    } else {
-                        Toast.makeText(context, "Location not found", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                .addOnCompleteListener{
-
-                }
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_LOCATION
+            )
         } else {
             Toast.makeText(context, "Permission not granted!", Toast.LENGTH_SHORT).show();
         }
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location : Location? ->
+                // Got last known location. In some rare situations this can be null.
+                if (location != null){
+                    viewModel.getForecastCurrentLocationData(location.latitude,location.longitude)
+                } else {
+                    Toast.makeText(context, "Location not found", Toast.LENGTH_SHORT).show();
+                }
+            }
 
         coordinateMotion()
         return _binding?.root
