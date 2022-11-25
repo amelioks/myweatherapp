@@ -10,7 +10,15 @@ interface ForecastsService {
     suspend fun getForecasts(
         @Query("q") query: String,
         @Query("cnt") count: Int,
-        @Query("units") page: String
+        @Query("units") page: String,
+    ): WeatherForecastResponse
+
+    @GET("data/2.5/forecast")
+    suspend fun getForecastsCurrentLocation(
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
+        @Query("cnt") count: Int,
+        @Query("units") page: String,
     ): WeatherForecastResponse
 
 }

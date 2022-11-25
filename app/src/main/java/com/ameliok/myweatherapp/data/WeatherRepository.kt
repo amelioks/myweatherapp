@@ -14,4 +14,13 @@ class WeatherRepository(
     ): WeatherForecastResponse {
         return service.getForecasts(query, forecastDayCount, units)
     }
+
+    suspend fun getWeatherForecastCurrentLocationData(
+        lat: Double,
+        lon: Double,
+        forecastDayCount: Int,
+        units: String
+    ): WeatherForecastResponse {
+        return service.getForecastsCurrentLocation(lat, lon, forecastDayCount, units)
+    }
 }

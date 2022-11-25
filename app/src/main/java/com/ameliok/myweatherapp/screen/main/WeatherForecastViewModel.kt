@@ -37,6 +37,11 @@ class WeatherForecastViewModel (
         _weatherDataResult.value = repository.getWeatherForecastData(query,9, "metric")
     }
 
+    fun getForecastCurrentLocationData(latitude: Double, longitude: Double) = viewModelScope.launch{
+        _weatherDataResult.value = repository.getWeatherForecastCurrentLocationData(
+            latitude, longitude, 9, "metric")
+    }
+
     fun onDataWeatherForecastClick(weatherForecast: WeatherForecast) {
         _navigateToSelectedData.value = weatherForecast
     }

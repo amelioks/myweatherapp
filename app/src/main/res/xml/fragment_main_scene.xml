@@ -6,90 +6,89 @@
     <Transition
         app:constraintSetStart="@+id/start"
         app:constraintSetEnd="@+id/end">
+        <KeyFrameSet>
+            <KeyPosition
+                app:framePosition="25"
+                app:motionTarget="@id/currentTemperature"
+                app:keyPositionType="parentRelative"
+                app:percentY="0.6"
+                />
+            <KeyPosition
+                app:framePosition="25"
+                app:motionTarget="@id/currentLocation"
+                app:keyPositionType="parentRelative"
+                app:percentY="0.6"
+                />
+            <KeyPosition
+                app:framePosition="25"
+                app:motionTarget="@id/changeLocation"
+                app:keyPositionType="parentRelative"
+                app:percentY="0.6"
+                />
 
+            <KeyPosition
+                app:framePosition="50"
+                app:motionTarget="@id/currentTemperature"
+                app:keyPositionType="parentRelative"
+                app:percentY="0.5"
+                />
+            <KeyPosition
+                app:framePosition="50"
+                app:motionTarget="@id/currentLocation"
+                app:keyPositionType="parentRelative"
+                app:percentY="0.5"
+                />
+            <KeyPosition
+                app:framePosition="50"
+                app:motionTarget="@id/changeLocation"
+                app:keyPositionType="parentRelative"
+                app:percentY="0.5"
+                />
 
-    <KeyFrameSet>
-        <KeyPosition
-            app:framePosition="25"
-            app:motionTarget="@id/currentTemperature"
-            app:keyPositionType="parentRelative"
-            app:percentY="0.6"
-            />
-        <KeyPosition
-            app:framePosition="25"
-            app:motionTarget="@id/currentLocation"
-            app:keyPositionType="parentRelative"
-            app:percentY="0.6"
-            />
-        <KeyPosition
-            app:framePosition="25"
-            app:motionTarget="@id/changeLocation"
-            app:keyPositionType="parentRelative"
-            app:percentY="0.6"
-            />
-
-        <KeyPosition
-            app:framePosition="50"
-            app:motionTarget="@id/currentTemperature"
-            app:keyPositionType="parentRelative"
-            app:percentY="0.5"
-            />
-        <KeyPosition
-            app:framePosition="50"
-            app:motionTarget="@id/currentLocation"
-            app:keyPositionType="parentRelative"
-            app:percentY="0.5"
-            />
-        <KeyPosition
-            app:framePosition="50"
-            app:motionTarget="@id/changeLocation"
-            app:keyPositionType="parentRelative"
-            app:percentY="0.5"
-            />
-
-        <KeyPosition
-            app:framePosition="75"
-            app:motionTarget="@id/currentTemperature"
-            app:keyPositionType="parentRelative"
-            app:percentY="0.6"
-            />
-        <KeyPosition
-            app:framePosition="75"
-            app:motionTarget="@id/currentLocation"
-            app:keyPositionType="parentRelative"
-            app:percentY="0.6"
-            />
-        <KeyPosition
-            app:framePosition="75"
-            app:motionTarget="@id/changeLocation"
-            app:keyPositionType="parentRelative"
-            app:percentY="0.6"
-            />
-        <KeyAttribute
-            app:framePosition="50"
-            app:motionTarget="@id/currentTemperature"
-            />
-        <KeyAttribute
-            app:framePosition="50"
-            app:motionTarget="@id/currentLocation"
-            />
-        <KeyAttribute
-            app:framePosition="50"
-            app:motionTarget="@id/changeLocation"
-            />
-        <KeyAttribute
-            app:framePosition="100"
-            app:motionTarget="@id/currentTemperature"
-            />
-        <KeyAttribute
-            app:framePosition="100"
-            app:motionTarget="@id/currentLocation"
-            />
-        <KeyAttribute
-            app:framePosition="100"
-            app:motionTarget="@id/changeLocation"
-            />
-    </KeyFrameSet>
+            <KeyPosition
+                app:framePosition="75"
+                app:motionTarget="@id/currentTemperature"
+                app:keyPositionType="parentRelative"
+                app:percentY="0.6"
+                />
+            <KeyPosition
+                app:framePosition="75"
+                app:motionTarget="@id/currentLocation"
+                app:keyPositionType="parentRelative"
+                app:percentY="0.6"
+                />
+            <KeyPosition
+                app:framePosition="75"
+                app:motionTarget="@id/changeLocation"
+                app:keyPositionType="parentRelative"
+                app:percentY="0.6"
+                />
+            <KeyAttribute
+                app:framePosition="50"
+                app:motionTarget="@id/currentTemperature"
+                />
+            <KeyAttribute
+                app:framePosition="50"
+                app:motionTarget="@id/currentLocation"
+                />
+            <KeyAttribute
+                app:framePosition="50"
+                app:motionTarget="@id/changeLocation"
+                />
+            <KeyAttribute
+                app:framePosition="100"
+                app:motionTarget="@id/currentTemperature"/>
+            <KeyAttribute
+                app:framePosition="100"
+                app:motionTarget="@id/currentLocation" />
+            <KeyAttribute
+                app:framePosition="100"
+                app:motionTarget="@id/changeLocation" />
+            <KeyAttribute
+                app:framePosition="100"
+                app:motionTarget="@id/appBar_layout"
+                android:translationY="500dp" />
+        </KeyFrameSet>
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
@@ -116,6 +115,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Constraint
+            app:layout_constraintVertical_bias="0.52"
+            android:layout_height="1000dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:id="@+id/appBar_layout" />
 
     </ConstraintSet>
 
