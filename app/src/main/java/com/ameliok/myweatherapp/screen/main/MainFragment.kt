@@ -40,7 +40,6 @@ class MainFragment: Fragment() {
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        coordinateMotion()
         return _binding?.root
     }
 
@@ -130,19 +129,6 @@ class MainFragment: Fragment() {
                     }
                 }
         }
-    }
-
-    private fun coordinateMotion() {
-
-        val appBarLayout = binding.appBarLayout
-        val motionLayout = binding.motionLayout
-
-        val listener = AppBarLayout.OnOffsetChangedListener { unused, verticalOffset ->
-            val seekPosition = -verticalOffset / appBarLayout.totalScrollRange.toFloat()
-            motionLayout.progress = seekPosition
-        }
-
-        appBarLayout.addOnOffsetChangedListener(listener)
     }
 
 }
