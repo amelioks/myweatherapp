@@ -60,7 +60,7 @@ class MainFragment: Fragment() {
             .addOnSuccessListener { location : Location? ->
                 // Got last known location. In some rare situations this can be null.
                 if (location != null){
-                    viewModel.getForecastCurrentLocationData(location.latitude,location.longitude)
+                    //viewModel.getForecastCurrentLocationData(location.latitude,location.longitude)
                 } else {
                     Toast.makeText(context, "Location not found", Toast.LENGTH_SHORT).show();
                 }
@@ -79,7 +79,8 @@ class MainFragment: Fragment() {
 
     private fun initQuery() {
         val arg = arguments ?: return
-        val query = MainFragmentArgs.fromBundle(arg).changeLocationClick?: return
+        if (arg.isEmpty) return
+        val query = MainFragmentArgs.fromBundle(arg).changeLocationClick ?: return
         viewModel.setNewQuery(query)
         viewModel.getForecastData()
     }

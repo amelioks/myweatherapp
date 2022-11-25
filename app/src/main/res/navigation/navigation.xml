@@ -14,9 +14,7 @@
         <argument
         android:name="changeLocationClick"
         app:argType="string"
-            app:nullable="true"
-            android:defaultValue="berlin"/>
-
+            app:nullable="true"/>
         <action
             android:id="@+id/action_showDetail"
             app:destination="@id/detailFragment" />
