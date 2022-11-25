@@ -70,17 +70,32 @@
                                 tools:text="Berlin" />
 
                             <TextView
-                                android:id="@+id/changeLocation"
+                                android:id="@+id/useMyLocation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:text="@string/change_location"
+                                android:layout_marginTop="4dp"
+                                android:text="@string/use_my_location"
                                 android:textColor="@color/ink"
                                 android:textSize="@dimen/spacing_12dp"
                                 android:textStyle="italic"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/currentLocation" />
+
+                            <TextView
+                                android:id="@+id/changeLocation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="@string/change_location"
+                                android:textColor="@color/ink"
+                                android:textSize="@dimen/spacing_12dp"
+                                android:textStyle="italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/useMyLocation"
+                                app:layout_constraintTop_toBottomOf="parent" />
+
+
 
                         </androidx.constraintlayout.motion.widget.MotionLayout>
                     </com.google.android.material.appbar.AppBarLayout>

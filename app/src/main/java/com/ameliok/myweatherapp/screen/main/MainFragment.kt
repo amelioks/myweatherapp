@@ -1,6 +1,7 @@
 package com.ameliok.myweatherapp.screen.main
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -38,34 +39,7 @@ class MainFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        if (ActivityCompat.checkSelfPermission(
-                requireActivity(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireActivity(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_LOCATION
-            )
-        } else {
-            Toast.makeText(context, "Permission not granted!", Toast.LENGTH_SHORT).show();
-        }
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location : Location? ->
-                // Got last known location. In some rare situations this can be null.
-                if (location != null){
-                    //viewModel.getForecastCurrentLocationData(location.latitude,location.longitude)
-                } else {
-                    Toast.makeText(context, "Location not found", Toast.LENGTH_SHORT).show();
-                }
-            }
-
         coordinateMotion()
         return _binding?.root
     }
@@ -101,6 +75,7 @@ class MainFragment: Fragment() {
     fun bindUI(){
         setupView()
         changeLocationClick()
+        useMyLocation()
     }
 
     private fun setupView(): View {
@@ -124,6 +99,36 @@ class MainFragment: Fragment() {
     fun changeLocationClick() {
         binding.changeLocation.setOnClickListener {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToWeatherLocationFragment())
+        }
+    }
+
+    fun useMyLocation() {
+        binding.useMyLocation.setOnClickListener {
+            if (ActivityCompat.checkSelfPermission(
+                    requireActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    requireActivity(),
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
+                    REQUEST_LOCATION
+                )
+            } else {
+                Toast.makeText(context, "Permission not granted!", Toast.LENGTH_SHORT).show();
+            }
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location : Location? ->
+                    if (location != null){
+                        viewModel.getForecastCurrentLocationData(location.latitude,location.longitude)
+                    } else {
+                        Toast.makeText(context, "Location not found", Toast.LENGTH_SHORT).show();
+                    }
+                }
         }
     }
 
