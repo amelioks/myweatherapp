@@ -2,6 +2,7 @@ package com.ameliok.myweatherapp.screen.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +14,13 @@ import com.ameliok.myweatherapp.utils.setWeatherIconUrl
 import com.ameliok.myweatherapp.utils.toDegree
 
 class DetailFragment : Fragment() {
+    private lateinit var binding: FragmentWeatherDetailBinding
+
+    private var progress = 0F
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val binding = FragmentWeatherDetailBinding.inflate(inflater)
+        binding = FragmentWeatherDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
         val weatherDetail = DetailFragmentArgs.fromBundle(
             requireArguments()
@@ -27,23 +32,37 @@ class DetailFragment : Fragment() {
         binding.temperatureMin.text = weatherDetail.main.tempMin.toDegree()
         binding.humidityLevel.text = weatherDetail.main.humidity.toString()
 
-        val motionLayout = binding.motionLayout
-        motionLayout.addTransitionListener(object : MotionLayout.TransitionListener {
+//        binding.motionLayout.progress = savedInstanceState?.getFloat(KEY_MOTION_PROGRESS) ?: 0f
+        binding.motionLayout.addTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
+                Log.d(TAG, "onTransitionStarted: ")
             }
 
             override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
+                Log.d(TAG, "onTransitionChange: ")
             }
 
             override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
-                startActivity(Intent(requireActivity(), MainActivity::class.java))
+                //startActivity(Intent(requireActivity(), MainActivity::class.java))
+                Log.d(TAG, "onTransitionCompleted: ")
             }
 
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
+                Log.d(TAG, "onTransitionTrigger: ")
             }
 
         })
 
         return binding.root
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putFloat(KEY_MOTION_PROGRESS, binding.motionLayout.progress)
+    }
+
+    companion object {
+        private const val KEY_MOTION_PROGRESS = "motion_progress"
+        private const val TAG = "detailFragment"
     }
 }
