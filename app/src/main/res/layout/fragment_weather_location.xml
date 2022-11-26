@@ -30,8 +30,8 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/spacing_16dp"
                 android:textStyle="bold"
-                tools:layout_editor_absoluteX="4dp"
-                tools:layout_editor_absoluteY="8dp" />
+                tools:layout_editor_absoluteX="@dimen/spacing_4dp"
+                tools:layout_editor_absoluteY="@dimen/spacing_8dp" />
 
 
             <androidx.appcompat.widget.SearchView
@@ -43,7 +43,7 @@
                 android:paddingTop="@dimen/spacing_12dp"
                 android:paddingBottom="@dimen/spacing_12dp"
                 app:iconifiedByDefault="false"
-                tools:layout_editor_absoluteX="4dp" />
+                tools:layout_editor_absoluteX="@dimen/spacing_4dp" />
 
 
         </LinearLayout>

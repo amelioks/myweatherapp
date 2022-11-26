@@ -25,8 +25,8 @@
 
                 <ImageView
                     android:id="@+id/ImageWeather"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="@dimen/spacing_200dp"
+                    android:layout_height="@dimen/spacing_200dp"
                     android:layout_margin="@dimen/spacing_8dp"
                     android:adjustViewBounds="true"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +38,7 @@
             </androidx.constraintlayout.motion.widget.MotionLayout>
 
             <ScrollView
-                android:layout_width="0dp"
+                android:layout_width="@dimen/spacing_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_64dp"
                 android:padding="@dimen/spacing_16dp"
@@ -76,13 +76,13 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="@dimen/spacing_16dp"
                         android:background="@color/azureLight"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="@dimen/spacing_0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
@@ -107,7 +107,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="@dimen/spacing_16dp"
                         android:background="@color/azureLight"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
@@ -138,7 +138,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="@dimen/spacing_16dp"
                         android:background="@color/azureLight"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
@@ -149,25 +149,24 @@
                             android:layout_weight="1"
                             android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/humidity"
-                                android:textColor="@color/ink" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/humidity"
+                            android:textColor="@color/ink" />
 
-                            <TextView
-                                android:id="@+id/humidityLevel"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_4dp"
-                                android:textColor="@color/ink"
-                                tools:text="humidity level" />
+                        <TextView
+                            android:id="@+id/humidityLevel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_4dp"
+                            android:textColor="@color/ink"
+                            tools:text="humidity level" />
 
-                        </LinearLayout>
                     </LinearLayout>
-
                 </LinearLayout>
-            </ScrollView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </FrameLayout>
-</layout>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout></layout>

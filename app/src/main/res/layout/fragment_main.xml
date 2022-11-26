@@ -1,108 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".screen.main.WeatherForecastAdapter">
 
     <LinearLayout
+        android:id="@+id/layoutMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="@dimen/spacing_180dp"
+            android:background="@color/azureLight"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/layoutMain"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBar_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:background="@color/azureLight"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent">
 
-                    <com.google.android.material.appbar.AppBarLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/appBar_layout">
+                    <TextView
+                        android:id="@+id/currentTemperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_36dp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_x36"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="17°" />
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/currentLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_x20"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/currentTemperature"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:text="Berlin" />
 
-                            <TextView
-                                android:id="@+id/currentTemperature"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_64dp"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/font_x36"
-                                android:textStyle="bold"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:text="17°" />
+                    <TextView
+                        android:id="@+id/useMyLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_4dp"
+                        android:text="@string/use_my_location"
+                        android:textColor="@color/ink"
+                        android:textSize="@dimen/font_x14"
+                        android:textStyle="italic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/currentLocation" />
 
-                            <TextView
-                                android:id="@+id/currentLocation"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/font_x20"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/currentTemperature"
-                                app:layout_constraintVertical_bias="0.0"
-                                tools:text="Berlin" />
+                    <TextView
+                        android:id="@+id/changeLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_4dp"
+                        android:text="@string/change_location"
+                        android:textColor="@color/ink"
+                        android:textSize="@dimen/font_x14"
+                        android:textStyle="italic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/useMyLocation" />
 
-                            <TextView
-                                android:id="@+id/useMyLocation"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_4dp"
-                                android:text="@string/use_my_location"
-                                android:textColor="@color/ink"
-                                android:textSize="@dimen/spacing_12dp"
-                                android:textStyle="italic"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/currentLocation" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+        </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/changeLocation"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_4dp"
-                                android:text="@string/change_location"
-                                android:textColor="@color/ink"
-                                android:textSize="@dimen/spacing_12dp"
-                                android:textStyle="italic"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/useMyLocation" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/weather_list" />
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </com.google.android.material.appbar.AppBarLayout>
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/weather_list"/>
-
-            </LinearLayout>
-        </FrameLayout>
     </LinearLayout>
-</FrameLayout>
 </layout>
