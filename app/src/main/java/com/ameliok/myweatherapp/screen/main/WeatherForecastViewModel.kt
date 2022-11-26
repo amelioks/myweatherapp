@@ -10,12 +10,13 @@ import com.ameliok.myweatherapp.data.SharedPreferenceHelper
 import com.ameliok.myweatherapp.data.WeatherRepository
 import kotlinx.coroutines.launch
 
-class WeatherForecastViewModel (
+
+class WeatherForecastViewModel(
     private val repository: WeatherRepository,
     private val sharedPreferenceHelper: SharedPreferenceHelper
-): ViewModel() {
+) : ViewModel() {
     private val _weatherDataResult = MutableLiveData<WeatherForecastResponse>()
-    val weatherDataResult: LiveData<WeatherForecastResponse>get() = _weatherDataResult
+    val weatherDataResult: LiveData<WeatherForecastResponse> get() = _weatherDataResult
 
     private val _navigateToSelectedData = MutableLiveData<WeatherForecast?>()
     val navigateToSelectedData: MutableLiveData<WeatherForecast?>
@@ -33,14 +34,16 @@ class WeatherForecastViewModel (
         sharedPreferenceHelper.query = newQuery
     }
 
-    fun getForecastData() = viewModelScope.launch{
-        _weatherDataResult.value = repository.getWeatherForecastData(query,9, "metric")
+    fun getForecastData() = viewModelScope.launch {
+        _weatherDataResult.value = repository.getWeatherForecastData(query, 9, "metric")
     }
 
-    fun getForecastCurrentLocationData(latitude: Double, longitude: Double) = viewModelScope.launch{
-        _weatherDataResult.value = repository.getWeatherForecastCurrentLocationData(
-            latitude, longitude, 9, "metric")
-    }
+    fun getForecastCurrentLocationData(latitude: Double, longitude: Double) =
+        viewModelScope.launch {
+            _weatherDataResult.value = repository.getWeatherForecastCurrentLocationData(
+                latitude, longitude, 9, "metric"
+            )
+        }
 
     fun onDataWeatherForecastClick(weatherForecast: WeatherForecast) {
         _navigateToSelectedData.value = weatherForecast

@@ -1,11 +1,12 @@
 package com.ameliok.myweatherapp.screen.main
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ameliok.myweatherapp.api.service.ForecastsService
 import com.ameliok.myweatherapp.api.service.ServiceBuilder
 import com.ameliok.myweatherapp.data.SharedPreferenceHelper
@@ -21,12 +23,17 @@ import com.ameliok.myweatherapp.databinding.FragmentMainBinding
 import com.ameliok.myweatherapp.utils.toDegree
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.material.appbar.AppBarLayout
 
-class MainFragment: Fragment() {
+
+class MainFragment : Fragment() {
     private val repository = WeatherRepository(ServiceBuilder(ForecastsService::class.java))
     private val sharedPreferenceHelper by lazy { SharedPreferenceHelper(requireContext()) }
-    private val viewModel: WeatherForecastViewModel by viewModels { WeatherForecastViewModelFactory(repository, sharedPreferenceHelper) }
+    private val viewModel: WeatherForecastViewModel by viewModels {
+        WeatherForecastViewModelFactory(
+            repository,
+            sharedPreferenceHelper
+        )
+    }
     private lateinit var adapter: WeatherForecastAdapter
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -71,7 +78,7 @@ class MainFragment: Fragment() {
         })
     }
 
-    fun bindUI(){
+    fun bindUI() {
         setupView()
         changeLocationClick()
         useMyLocation()
@@ -79,13 +86,17 @@ class MainFragment: Fragment() {
 
     private fun setupView(): View {
         adapter = WeatherForecastAdapter(WeatherForecastAdapter.OnClickListener { forecastID
-            -> viewModel.onDataWeatherForecastClick(forecastID)
+            ->
+            viewModel.onDataWeatherForecastClick(forecastID)
         })
+        adapter.stateRestorationPolicy =
+            RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        viewModel.navigateToSelectedData.observe(viewLifecycleOwner) {forecast ->
-            forecast?.let{
-                findNavController().navigate(MainFragmentDirections.actionShowDetail(
+        viewModel.navigateToSelectedData.observe(viewLifecycleOwner) { forecast ->
+            forecast?.let {
+                findNavController().navigate(
+                    MainFragmentDirections.actionShowDetail(
                         it
                     )
                 )
@@ -121,14 +132,18 @@ class MainFragment: Fragment() {
             }
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
             fusedLocationClient.lastLocation
-                .addOnSuccessListener { location : Location? ->
-                    if (location != null){
-                        viewModel.getForecastCurrentLocationData(location.latitude,location.longitude)
+                .addOnSuccessListener { location: Location? ->
+                    if (location != null) {
+                        viewModel.getForecastCurrentLocationData(
+                            location.latitude,
+                            location.longitude
+                        )
                     } else {
                         Toast.makeText(context, "Location not found", Toast.LENGTH_SHORT).show();
                     }
                 }
         }
     }
+
 
 }

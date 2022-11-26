@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.ameliok.myweatherapp.screen.main.MainFragment"
-        android:label="@string/fragment_main"
+        android:label="MainFragment"
         tools:layout="@layout/fragment_main">
 
         <argument

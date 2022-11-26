@@ -8,4 +8,5 @@
     <string name="change_location">change location</string>
     <string name="input_your_desired_location">Input your Desired Location:</string>
     <string name="use_my_location">use my location</string>
+    <string name="mainFragment">Main Fragment</string>
 </resources>
