@@ -16,7 +16,6 @@ import com.ameliok.myweatherapp.utils.toDegree
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentWeatherDetailBinding
 
-    private var progress = 0F
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -32,7 +31,6 @@ class DetailFragment : Fragment() {
         binding.temperatureMin.text = weatherDetail.main.tempMin.toDegree()
         binding.humidityLevel.text = weatherDetail.main.humidity.toString()
 
-//        binding.motionLayout.progress = savedInstanceState?.getFloat(KEY_MOTION_PROGRESS) ?: 0f
         binding.motionLayout.addTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
                 Log.d(TAG, "onTransitionStarted: ")
@@ -52,17 +50,11 @@ class DetailFragment : Fragment() {
             }
 
         })
-
         return binding.root
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putFloat(KEY_MOTION_PROGRESS, binding.motionLayout.progress)
-    }
 
     companion object {
-        private const val KEY_MOTION_PROGRESS = "motion_progress"
         private const val TAG = "detailFragment"
     }
 }
