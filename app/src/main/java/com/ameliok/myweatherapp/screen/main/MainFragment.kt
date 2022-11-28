@@ -49,7 +49,6 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         return _binding?.root
     }
 
@@ -68,17 +67,6 @@ class MainFragment : Fragment() {
         viewModel.getForecastData()
     }
 
-    private fun checkQuery() {
-        val arg = arguments ?: return
-        if (arg.isEmpty) return
-        val query = MainFragmentArgs.fromBundle(arg).changeLocationClick ?: return
-        if (query.isNotEmpty()) {
-            initQuery()
-        } else {
-            isPermissionGranted()
-        }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
@@ -90,12 +78,18 @@ class MainFragment : Fragment() {
             binding.currentLocation.text = it.city.name
             binding.currentTemperature.text = it.list.firstOrNull()?.main?.temp?.toDegree()
         })
+        viewModel.navigateToSelectedData.observe(viewLifecycleOwner) { forecast ->
+            forecast?.let {
+                findNavController().navigate(
+                    MainFragmentDirections.actionShowDetail(it)
+                )
+                viewModel.dataWeatherForecastNavigated()
+            }
+        }
     }
 
     fun bindUI() {
         setupView()
-        changeLocationClick()
-        changeMyCurrentLocation()
     }
 
     private fun setupView(): View {
@@ -107,48 +101,42 @@ class MainFragment : Fragment() {
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        viewModel.navigateToSelectedData.observe(viewLifecycleOwner) { forecast ->
-            forecast?.let {
-                findNavController().navigate(
-                    MainFragmentDirections.actionShowDetail(
-                        it
-                    )
-                )
-                viewModel.dataWeatherForecastNavigated()
-            }
-        }
-        return binding.root
-    }
-
-    fun changeMyCurrentLocation() {
         binding.useMyLocation.setOnClickListener {
-            isPermissionGranted()
+            onMyLocationClicked()
         }
-    }
-
-    fun changeLocationClick() {
         binding.changeLocation.setOnClickListener {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToWeatherLocationFragment())
         }
-        checkQuery()
+
+        return binding.root
     }
 
-    private fun isPermissionGranted() {
-        if(ActivityCompat.checkSelfPermission(requireActivity(),
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(requireActivity(),
-                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_LOCATION)
+    private fun isPermissionGranted(): Boolean {
+        val isFineLocationGranted = ActivityCompat.checkSelfPermission(
+            requireActivity(),
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+        val isCoarseLocationGranted = ActivityCompat.checkSelfPermission(
+            requireActivity(),
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
 
+        return isFineLocationGranted && isCoarseLocationGranted
+
+    }
+
+    private fun onMyLocationClicked() {
+        if (isPermissionGranted()) {
             getLocation()
         } else {
-            Toast.makeText(context, "Permission is not granted!", Toast.LENGTH_SHORT).show()
+            requestPermissions(
+                arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_LOCATION
+            )
         }
     }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -189,6 +177,5 @@ class MainFragment : Fragment() {
                 }
             }
     }
-
-
 }
+
