@@ -1,6 +1,7 @@
 package com.ameliok.myweatherapp.screen.main
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -40,6 +42,7 @@ class MainFragment : Fragment() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val REQUEST_LOCATION = 1
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,6 +68,17 @@ class MainFragment : Fragment() {
         viewModel.getForecastData()
     }
 
+    private fun checkQuery() {
+        val arg = arguments ?: return
+        if (arg.isEmpty) return
+        val query = MainFragmentArgs.fromBundle(arg).changeLocationClick ?: return
+        if (query.isNotEmpty()) {
+            initQuery()
+        } else {
+            isPermissionGranted()
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
@@ -81,7 +95,7 @@ class MainFragment : Fragment() {
     fun bindUI() {
         setupView()
         changeLocationClick()
-        useMyLocation()
+        changeMyCurrentLocation()
     }
 
     private fun setupView(): View {
@@ -106,43 +120,74 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
+    fun changeMyCurrentLocation() {
+        binding.useMyLocation.setOnClickListener {
+            isPermissionGranted()
+        }
+    }
+
     fun changeLocationClick() {
         binding.changeLocation.setOnClickListener {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToWeatherLocationFragment())
         }
+        checkQuery()
     }
 
-    fun useMyLocation() {
-        binding.useMyLocation.setOnClickListener {
-            if (ActivityCompat.checkSelfPermission(
-                    requireActivity(),
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    requireActivity(),
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    requireActivity(),
-                    arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
-                    REQUEST_LOCATION
-                )
-            } else {
-                Toast.makeText(context, "Permission not granted!", Toast.LENGTH_SHORT).show();
-            }
-            fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location: Location? ->
-                    if (location != null) {
-                        viewModel.getForecastCurrentLocationData(
-                            location.latitude,
-                            location.longitude
-                        )
-                    } else {
-                        Toast.makeText(context, "Location not found", Toast.LENGTH_SHORT).show();
-                    }
-                }
+    private fun isPermissionGranted() {
+        if(ActivityCompat.checkSelfPermission(requireActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(requireActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_LOCATION)
+
+            getLocation()
+        } else {
+            Toast.makeText(context, "Permission is not granted!", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_LOCATION -> {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.isNotEmpty()
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    // permission was granted.
+                    getLocation()
+                } else {
+                    // permission denied.
+                    // tell the user the action is cancelled
+                    Toast.makeText(context, "Permission is not granted!", Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    fun getLocation() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    viewModel.getForecastCurrentLocationData(
+                        location.latitude,
+                        location.longitude
+                    )
+                } else {
+                    Toast.makeText(context, "Location not found", Toast.LENGTH_SHORT).show();
+                }
+            }
     }
 
 
