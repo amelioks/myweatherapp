@@ -16,8 +16,3 @@ It leverages the following components from the Jetpack library:
 3. Navigation with the SafeArgs plugin for parameter passing between fragments
 4. ViewBinding
 
-SETTING THE REPOSITORY
-To get started with this project, simply pull the repository and import the project into Android Studio. From there, deploy the project to an emulator or device.
-
-PROJECT INSTRUCTIONS
-1. 

@@ -35,14 +35,19 @@ class WeatherForecastViewModel(
     }
 
     fun getForecastData() = viewModelScope.launch {
+        if (query.isBlank()) {
+            query = DEFAULT_QUERY
+        }
         _weatherDataResult.value = repository.getWeatherForecastData(query, 9, "metric")
     }
 
     fun getForecastCurrentLocationData(latitude: Double, longitude: Double) =
         viewModelScope.launch {
-            _weatherDataResult.value = repository.getWeatherForecastCurrentLocationData(
+            val result = repository.getWeatherForecastCurrentLocationData(
                 latitude, longitude, 9, "metric"
             )
+            _weatherDataResult.value = result
+            setNewQuery(result.city.name)
         }
 
     fun onDataWeatherForecastClick(weatherForecast: WeatherForecast) {
@@ -51,6 +56,10 @@ class WeatherForecastViewModel(
 
     fun dataWeatherForecastNavigated() {
         _navigateToSelectedData.value = null
+    }
+
+    companion object {
+        private const val DEFAULT_QUERY = "Berlin"
     }
 
 }
